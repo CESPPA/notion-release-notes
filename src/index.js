@@ -32,8 +32,11 @@ try {
     },
     properties: {
       'Deploy Log': {
+        id: 'title',
+        type: 'title',
         title: [
           {
+            type: 'text',
             text: {
               content: notes
             }
@@ -49,7 +52,14 @@ try {
         multi_select: repoTagArray
       },
       Deployer: {
-        rich_text: owner
+        rich_text: [
+          {
+            type: 'text',
+            text: {
+              content: owner
+            }
+          }
+        ]
       },
       Environment: {
         multi_select: envTagArray
