@@ -5,9 +5,12 @@ const { markdownToBlocks } = require('@tryfabric/martian')
 try {
   // `who-to-greet` input defined in action metadata file
   const body = core.getInput('body')
-  const name = core.getInput('name')
+  const owner = core.getInput('owner')
+  const notes = core.getInput('notes')
   const token = core.getInput('token')
-  const tags = core.getInput('tags') || ''
+  const repoTags = core.getInput('repoTags') || ''
+  const envTags = core.getInput('envTags') || ''
+  const verifiedTags = core.getInput('verifiedTags') || ''
   const database = core.getInput('database')
   const date = new Date().toISOString()
 
@@ -18,7 +21,9 @@ try {
   })
 
   const blocks = markdownToBlocks(body)
-  const tagArray = tags ? tags.split(',').flatMap(tag => { return { name: tag } }) : []
+  const repoTagArray = repoTags ? repoTags.split(',').flatMap(tag => { return { name: tag } }) : []
+  const envTagArray = envTags ? envTags.split(',').flatMap(tag => { return { name: tag } }) : []
+  const verifiedTagArray = verifiedTags ? verifiedTags.split(',').flatMap(tag => { return { name: tag } }) : []
 
   core.debug('Creating page ...')
   notion.pages.create({
@@ -26,22 +31,31 @@ try {
       database_id: database
     },
     properties: {
-      Name: {
+      "Deploy Log": {
         title: [
           {
             text: {
-              content: name
+              content: notes
             }
           }
         ]
       },
-      Date: {
+      "Date": {
         date: {
           start: date
         }
       },
-      Tags: {
-        multi_select: tagArray
+      "Top Level Repos": {
+        multi_select: repoTagArray
+      },
+      "Deployer": {
+        rich_text: owner
+      },
+      "Environment": {
+        multi_select: envTagArray
+      },
+      "Verified": {
+        multi_select: verifiedTagArray
       }
     },
     children: blocks
