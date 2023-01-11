@@ -12,7 +12,7 @@ try {
   const envTags = core.getInput('envTags') || ''
   const verifiedTags = core.getInput('verifiedTags') || ''
   const database = core.getInput('database')
-  const date = new Date().toISOString()
+  const date = new Date().toString()
 
   core.debug('Creating notion client ...')
   const notion = new Client({
