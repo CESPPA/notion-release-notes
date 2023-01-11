@@ -31,7 +31,7 @@ try {
       database_id: database
     },
     properties: {
-      "Deploy Log": {
+      'Deploy Log': {
         title: [
           {
             text: {
@@ -40,21 +40,21 @@ try {
           }
         ]
       },
-      "Date": {
+      Date: {
         date: {
           start: date
         }
       },
-      "Top Level Repos": {
+      'Top Level Repos': {
         multi_select: repoTagArray
       },
-      "Deployer": {
+      Deployer: {
         rich_text: owner
       },
-      "Environment": {
+      Environment: {
         multi_select: envTagArray
       },
-      "Verified": {
+      Verified: {
         multi_select: verifiedTagArray
       }
     },
