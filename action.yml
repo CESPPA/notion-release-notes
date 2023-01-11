@@ -10,15 +10,24 @@ inputs:
   database:
     description: 'Parent database to add to'
     required: true    
-  name:  
+  notes:
     description: 'Name for the release'
     required: true
-  body:  
+  owner:
+    description: 'Owner for the release'
+    required: true
+  repoTags:
+    description: 'Comma separated tag list: Repo for the release'
+    required: true
+  envTags:
+    description: 'Comma separated tag list: Env for the release'
+    required: true
+  verifiedTags:
+    description: 'Comma separated tag list: Verification status for the release'
+    required: true
+  body:
     description: 'Body content for release notes'
     required: true
-  tags:  
-    description: 'Comma separated tag list'
-    required: false
 outputs:
   status: 
     description: 'The status of the update'
