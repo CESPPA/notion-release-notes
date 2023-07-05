@@ -55,7 +55,8 @@ try {
       },
       Date: {
         date: {
-          start: date
+          start: date,
+          time_zone: 'America/Los_Angeles'
         }
       },
       'Top Level Repos': {
