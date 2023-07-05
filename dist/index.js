@@ -19333,16 +19333,16 @@ const { Client, LogLevel } = __nccwpck_require__(4232)
 const { markdownToBlocks } = __nccwpck_require__(2062)
 
 try {
-  // `who-to-greet` input defined in action metadata file
   const body = core.getInput('body')
   const owner = core.getInput('owner')
+  const version = core.getInput('version')
   const notes = core.getInput('notes')
   const token = core.getInput('token')
   const repoTags = core.getInput('repoTags') || ''
   const envTags = core.getInput('envTags') || ''
   const verifiedTags = core.getInput('verifiedTags') || ''
   const database = core.getInput('database')
-  const date = new Date().toISOString()
+  const date = new Date().toISOString().split('T')[0]
 
   core.debug('Creating notion client ...')
   const notion = new Client({
@@ -19369,6 +19369,16 @@ try {
             type: 'text',
             text: {
               content: notes
+            }
+          }
+        ]
+      },
+      Version: {
+        rich_text: [
+          {
+            type: 'text',
+            text: {
+              content: version
             }
           }
         ]
