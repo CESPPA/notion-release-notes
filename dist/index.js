@@ -19342,7 +19342,7 @@ try {
   const envTags = core.getInput('envTags') || ''
   const verifiedTags = core.getInput('verifiedTags') || ''
   const database = core.getInput('database')
-  const date = new Date().toLocaleString('en-US', { timeZone: 'America/Los_angeles' })
+  const date = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_angeles' })).toISOString()
 
   core.debug('Creating notion client ...')
   const notion = new Client({
