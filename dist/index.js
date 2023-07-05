@@ -19342,7 +19342,7 @@ try {
   const envTags = core.getInput('envTags') || ''
   const verifiedTags = core.getInput('verifiedTags') || ''
   const database = core.getInput('database')
-  const date = new Date().toISOString().split('T')[0]
+  const date = new Date().toLocaleString('en-US', { timeZone: 'America/Los_angeles' })
 
   core.debug('Creating notion client ...')
   const notion = new Client({
@@ -19385,8 +19385,7 @@ try {
       },
       Date: {
         date: {
-          start: date,
-          time_zone: 'America/Los_Angeles'
+          start: date
         }
       },
       'Top Level Repos': {
