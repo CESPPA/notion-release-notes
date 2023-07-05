@@ -28,6 +28,9 @@ inputs:
   body:
     description: 'Body content for release notes'
     required: true
+  version:
+    description: 'Release version'
+    required: true
 outputs:
   status: 
     description: 'The status of the update'
